@@ -5,7 +5,8 @@ const {
     createUser,
     readUser,
     updateUser,
-    deleteUser
+    deleteUser,
+    readAllUser
   }
 } = require(`../controllers`);
 
@@ -18,6 +19,7 @@ const {
 const userRouter = Router();
 
 userRouter.get(`/`, existUserDBTrue, readUser);
+userRouter.get(`/all`, readAllUser);
 userRouter.post(`/`, createUser);
 userRouter.patch(`/`, existUserDBTrue, updateUser);
 userRouter.delete(`/`, existUserDBTrue, deleteUser);

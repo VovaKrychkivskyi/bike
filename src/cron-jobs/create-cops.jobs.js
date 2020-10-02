@@ -4,7 +4,7 @@ const {
   }
 } = require(`../services`);
 
-module.exports = () => {
+module.exports = async () => {
   try {
     const Olya = {
       "name": "Olya",
@@ -17,12 +17,10 @@ module.exports = () => {
     },
        1000);
 
-
-
     const Katya = {
       "name": "Katya",
-      "password": "111",
-      "email": "111"
+      "password": "222",
+      "email": "222"
     }
     setTimeout(() => {
         createCopService(Katya);
@@ -32,8 +30,8 @@ module.exports = () => {
 
     const Oksana = {
       "name": "Oksana",
-      "password": "111",
-      "email": "111"
+      "password": "333",
+      "email": "333"
     }
     setTimeout(() => {
         createCopService(Oksana);
@@ -43,8 +41,8 @@ module.exports = () => {
 
     const Lilya = {
       "name": "Lilya",
-      "password": "111",
-      "email": "111"
+      "password": "444",
+      "email": "444"
     }
     setTimeout(() => {
         createCopService(Lilya);
@@ -54,8 +52,8 @@ module.exports = () => {
 
     const Dasha = {
       "name": "Dasha",
-      "password": "111",
-      "email": "111"
+      "password": "555",
+      "email": "555"
     }
     setTimeout(() => {
         createCopService(Dasha);

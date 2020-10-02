@@ -5,6 +5,9 @@ const {
     updateCopService,
     deleteCopService,
     getAllFreeCops
+  },
+  statService:{
+    getAllProcess
   }
 } = require(`../services`);
 
@@ -50,6 +53,16 @@ module.exports = {
     try {
       const allCops = await getAllFreeCops()
       res.json(allCops)
+
+    } catch (e) {
+      next(e)
+    }
+  },
+
+  readAllProcess : async (req, res, next) => {
+    try {
+      const allProcess = await getAllProcess()
+      res.json(allProcess)
 
     } catch (e) {
       next(e)

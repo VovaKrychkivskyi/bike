@@ -17,11 +17,12 @@ module.exports = {
     return await CopModel.destroy({where: {email}})
   },
 
-  getAllFreeCops:async ()=>{
+  getAllFreeCops: async () => {
     return await CopModel.findAll()
   },
 
   updateCopStatusService: async (status, name) => {
     return await CopModel.update({status}, {where: {name}})
   },
+
 }

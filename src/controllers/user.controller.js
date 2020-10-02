@@ -3,7 +3,8 @@ const {
     createUserService,
     checkUserService,
     updateUserService,
-    deleteUserService
+    deleteUserService,
+    getAllBikes
   }
 } = require(`../services`);
 
@@ -42,6 +43,15 @@ module.exports = {
     try {
       const user = await deleteUserService(req.body.owner_email)
       res.json(user)
+
+    } catch (e) {
+      next(e)
+    }
+  },
+  readAllUser: async (req, res, next) => {
+    try {
+      const allUsers = await getAllBikes()
+      res.json(allUsers)
 
     } catch (e) {
       next(e)

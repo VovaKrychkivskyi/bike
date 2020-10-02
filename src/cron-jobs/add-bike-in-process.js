@@ -8,7 +8,7 @@ const {
 } = require('../services')
 
 module.exports = () => {
-  cron.schedule(`*/5 * * * * *`, async () => {
+  cron.schedule(`*/10 * * * * *`, async () => {
     const stolenDB = await getAllBikes()
 
     for (let stolenDBElement of stolenDB) {
@@ -18,7 +18,8 @@ module.exports = () => {
         const {owner_email} = stolenDBElement.dataValues
 
         await StatModel.create({bike_id: id})
-        await updateUserService(`already add to police`, owner_email)
+
+        await updateUserService(`police know about it`, owner_email)
       }
     }
   })

@@ -14,4 +14,7 @@ module.exports = {
   addCopNameService: async (officer_name, id) => {
     return await StatModel.update({officer_name}, {where: {id}})
   },
+  getAllProcess: async () => {
+    return await StatModel.findAll()
+  }
 }

@@ -15,27 +15,29 @@ const {
 } = require(`../services`)
 
 module.exports = () => {
-  cron.schedule(`*/15 * * * * *`, async () => {
+  cron.schedule(`*/10 * * * * *`, async () => {
     const copsDB = await getAllFreeCops()
     const statDB = await getAllInfo()
 
     for (let copsDBElement of copsDB) {
       if (copsDBElement.dataValues.status === `smocking marlboro`) {
-        const id = copsDBElement.dataValues.id;
-        const name = copsDBElement.dataValues.name;
+        const copId = copsDBElement.dataValues.id;
+        const copName = copsDBElement.dataValues.name;
 
-        await updateCopStatusService(`I'm working`, name)
+        await updateCopStatusService(`I'm working`, copName)
 
         for (let statDBElement of statDB) {
           if (statDBElement.dataValues.status === `stolen`) {
-            const idStat = statDBElement.dataValues.id;
+            const statId = statDBElement.dataValues.id;
 
-            await updateStatService(`looking for`, idStat);
-            await addCopService(id, idStat);
-            await addCopNameService(name, idStat)
+            await updateStatService(`looking for`, statId)
 
-            await updateStatService(`already found`, idStat);
-            await updateCopStatusService(`smocking marlboro`, name)
+            await addCopService(copId, statId);
+            await addCopNameService(copName, statId)
+
+            await updateStatService(`bike is already found`, statId)
+
+            await updateCopStatusService(`smocking marlboro`, copName)
           }
         }
       }
