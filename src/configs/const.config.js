@@ -9,5 +9,7 @@ module.exports = {
 
   TABLE_NAME_COPS:`cops_table`,
   TABLE_NAME_BIKE:`bike_table`,
-  TABLE_NAME_PROCESS:`statistics_table`
+  TABLE_NAME_PROCESS:`statistics_table`,
+
+  WHITE_LIST:'http://localhost:3006'
 }
