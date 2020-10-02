@@ -6,7 +6,7 @@ const {
     getAllFreeCops,
     updateCopStatusService
   },
-  statService:{
+  statService: {
     getAllInfo,
     updateStatService,
     addCopService,
@@ -20,25 +20,22 @@ module.exports = () => {
     const statDB = await getAllInfo()
 
     for (let copsDBElement of copsDB) {
-      if (copsDBElement.dataValues.status === `smocking marlboro`){
+      if (copsDBElement.dataValues.status === `smocking marlboro`) {
         const id = copsDBElement.dataValues.id;
         const name = copsDBElement.dataValues.name;
+
         await updateCopStatusService(`I'm working`, name)
 
         for (let statDBElement of statDB) {
-          if (statDBElement.dataValues.status === `stolen`){
+          if (statDBElement.dataValues.status === `stolen`) {
             const idStat = statDBElement.dataValues.id;
-            await updateStatService(`looking for`, idStat);
 
-            await addCopService(id,idStat);
+            await updateStatService(`looking for`, idStat);
+            await addCopService(id, idStat);
             await addCopNameService(name, idStat)
 
-            setTimeout(()=>{
-              updateStatService(`already found`, idStat);
-              updateCopStatusService(`smocking marlboro`, name)
-            },5000)
-
-
+            await updateStatService(`already found`, idStat);
+            await updateCopStatusService(`smocking marlboro`, name)
           }
         }
       }
