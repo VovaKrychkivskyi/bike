@@ -4,7 +4,8 @@ const {
     createCop,
     readCop,
     updateCop,
-    deleteCop
+    deleteCop,
+    readAllCops
   }
 } = require(`../controllers`);
 
@@ -18,6 +19,7 @@ const {
 const copsRouter = Router();
 
 copsRouter.get(`/`, existCopDBTrue, readCop);
+copsRouter.get(`/all`, readAllCops);
 copsRouter.post(`/`, existCopDBFalse, createCop);
 copsRouter.patch(`/`, existCopDBTrue, updateCop);
 copsRouter.delete(`/`, existCopDBTrue, deleteCop);

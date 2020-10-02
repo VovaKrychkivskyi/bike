@@ -3,7 +3,8 @@ const {
     createCopService,
     checkCopService,
     updateCopService,
-    deleteCopService
+    deleteCopService,
+    getAllFreeCops
   }
 } = require(`../services`);
 
@@ -40,6 +41,15 @@ module.exports = {
     try {
       const user = await deleteCopService(req.body.email)
       res.json(user)
+
+    } catch (e) {
+      next(e)
+    }
+  },
+  readAllCops: async (req, res, next) => {
+    try {
+      const allCops = await getAllFreeCops()
+      res.json(allCops)
 
     } catch (e) {
       next(e)

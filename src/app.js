@@ -14,7 +14,7 @@ addCopInProcess();
 
 app.use(cors({
   origin: (origin, callback) => {
-    if (WHITE_LIST.split(';').includes(origin)) {
+    if (WHITE_LIST.includes(origin)) {
       callback(null, true)
     } else {
       callback(new Error('Not allowed by CORS'))
