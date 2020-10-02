@@ -21,13 +21,12 @@ module.exports = () => {
 
     for (let copsDBElement of copsDB) {
       if (copsDBElement.dataValues.status === `smocking marlboro`) {
-        const copId = copsDBElement.dataValues.id;
-        const copName = copsDBElement.dataValues.name;
-
-        await updateCopStatusService(`I'm working`, copName)
-
         for (let statDBElement of statDB) {
           if (statDBElement.dataValues.status === `stolen`) {
+            const copId = copsDBElement.dataValues.id;
+            const copName = copsDBElement.dataValues.name;
+
+            await updateCopStatusService(`I'm working`, copName)
             const statId = statDBElement.dataValues.id;
 
             await updateStatService(`looking for`, statId)
@@ -36,7 +35,6 @@ module.exports = () => {
             await addCopNameService(copName, statId)
 
             await updateStatService(`bike is already found`, statId)
-
             await updateCopStatusService(`smocking marlboro`, copName)
           }
         }
