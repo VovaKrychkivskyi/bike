@@ -9,7 +9,7 @@ const {
 
 
 module.exports = () => {
-  cron.schedule(`*/10 * * * * *`, async () => {
+  cron.schedule(`*/15 * * * * *`, async () => {
     const copsDB = await getAllFreeCops()
     const singleCop = []
     for (const copsAll of copsDB) {
