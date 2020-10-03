@@ -20,6 +20,7 @@ module.exports = () => {
   cron.schedule(`*/10 * * * * *`, async () => {
     const copsDB = await getAllFreeCops()
     const statDB = await getAllInfo()
+
     const singleCop = []
     const singleBike = []
 
@@ -29,27 +30,29 @@ module.exports = () => {
       }
     }
 
-    const cop = singleCop[0];
-    const copId = cop.id;
-    const copName = cop.name
-
     for (const bikeAll of statDB) {
       if (bikeAll.dataValues.status === `stolen`) {
         singleBike.push(bikeAll.dataValues)
       }
     }
 
-    const bike = singleBike[0];
-    const bikeId = bike.id;
+    if (singleCop.length > 0 && singleBike.length > 0) {
+      const bike = singleBike[0];
+      const cop = singleCop[0];
+      const nameCop = cop.name
+      const idCop = cop.id;
+      const idBike = bike.id
 
-    await updateCopStatusService(`I'm working`, copName)
-    await updateStatService(`looking for`, bikeId)
+      await updateCopStatusService(`I'm working`, nameCop)
+      await updateStatService(`looking for`, idBike)
 
-    await addCopService(copId, bikeId);
-    await addCopNameService(copName, bikeId)
+      await addCopNameService(nameCop, idBike)
+      await addCopService(idCop, idBike);
 
-    await updateStatService(`bike is already found`, bikeId)
-    await updateCopStatusService(`writing report`, copName)
+      await updateStatService(`bike is already found`, idBike)
+      await updateCopStatusService(`writing report`, nameCop)
+
+    }
   })
 }
 

@@ -8,7 +8,8 @@ const {
 } = require(`../services`)
 
 module.exports = () => {
-  cron.schedule(`*/15 * * * * *`, async () => {
+  cron.schedule(`*/5 * * * * *`, async () => {
+
     const copsDB = await getAllFreeCops()
     const singleCop = []
 
@@ -18,9 +19,10 @@ module.exports = () => {
       }
     }
 
-    const cop = singleCop[0];
-    const copName = cop.name
-
-    await updateCopStatusService(`smocking marlboro`, copName)
+    if (singleCop.length>0) {
+      const cop = singleCop[0];
+      const copName = cop.name
+      await updateCopStatusService(`smocking marlboro`, copName)
+    }
   })
 }
