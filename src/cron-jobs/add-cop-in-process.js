@@ -1,7 +1,5 @@
 const cron = require(`node-cron`)
 
-const StatModel = require(`../database/models/statistics.model`)
-
 const {
   copService: {
     getAllFreeCops,
@@ -17,7 +15,8 @@ const {
 } = require(`../services`)
 
 module.exports = () => {
-  cron.schedule(`*/10 * * * * *`, async () => {
+  cron.schedule(`0,02 * * * * *`, async () => {
+
     const copsDB = await getAllFreeCops()
     const statDB = await getAllInfo()
 
@@ -37,21 +36,21 @@ module.exports = () => {
     }
 
     if (singleCop.length > 0 && singleBike.length > 0) {
+
       const bike = singleBike[0];
       const cop = singleCop[0];
       const nameCop = cop.name
       const idCop = cop.id;
       const idBike = bike.id
 
-      await updateCopStatusService(`I'm working`, nameCop)
-      await updateStatService(`looking for`, idBike)
+      await updateCopStatusService(`I'm working`, nameCop);
+      await updateStatService(`looking for`, idBike);
 
-      await addCopNameService(nameCop, idBike)
+      await addCopNameService(nameCop, idBike);
       await addCopService(idCop, idBike);
 
-      await updateStatService(`bike is already found`, idBike)
+      await updateStatService(`bike is already found`, idBike);
       await updateCopStatusService(`writing report`, nameCop)
-
     }
   })
 }
