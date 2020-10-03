@@ -9,6 +9,7 @@ const {
 } = require(`../services`);
 
 module.exports = {
+
   createUser: async (req, res, next) => {
     try {
       const user = await createUserService(req.body)
@@ -21,7 +22,6 @@ module.exports = {
 
   readUser: async (req, res, next) => {
     try {
-
       res.json(req.user)
 
     } catch (e) {
@@ -48,6 +48,7 @@ module.exports = {
       next(e)
     }
   },
+
   readAllUser: async (req, res, next) => {
     try {
       const allUsers = await getAllBikes()

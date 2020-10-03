@@ -1,5 +1,4 @@
 //It's example dotenv
-
 module.exports = {
   DB_NAME:`schema_bike`,
   DB_USER:`root`,

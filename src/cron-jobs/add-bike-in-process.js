@@ -1,5 +1,7 @@
-const StatModel = require(`../database/models/statistics.model`)
 const cron = require(`node-cron`)
+
+const StatModel = require(`../database/models/statistics.model`)
+
 const {
   userService: {
     getAllBikes,
@@ -18,7 +20,6 @@ module.exports = () => {
         const {owner_email} = stolenDBElement.dataValues
 
         await StatModel.create({bike_id: id})
-
         await updateUserService(`police know about it`, owner_email)
       }
     }

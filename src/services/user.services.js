@@ -1,9 +1,9 @@
 const BikeModel = require(`../database/models/bike.model`)
 
 module.exports = {
+
   createUserService: async (user) => {
     return await BikeModel.create(user);
-
   },
 
   checkUserService: async (owner_email) => {

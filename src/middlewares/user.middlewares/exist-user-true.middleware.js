@@ -10,6 +10,7 @@ module.exports = async (req, res, next) => {
   try {
     const {owner_email} = req.body;
     const user = await checkUserService(owner_email)
+
     if (!user) {
       return next(new ErrorHandler(
         statusCodes.NOT_FOUND,

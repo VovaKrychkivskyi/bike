@@ -5,6 +5,7 @@ module.exports = async (req, res, next) => {
   try {
     const {email} = req.body
     const user = await checkCopService(email)
+
     if (user) {
       return next(new ErrorHandler(
         statusCodes.BAD_REQUEST,
@@ -12,6 +13,7 @@ module.exports = async (req, res, next) => {
         errors.BAD_REQUEST_EMAIL_EXISTS.code,
       ))
     }
+
     next()
 
   } catch (e) {

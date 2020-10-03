@@ -1,6 +1,7 @@
 const CopModel = require(`../database/models/cop.model`)
 
 module.exports = {
+
   createCopService: async (user) => {
     return await CopModel.create(user)
   },

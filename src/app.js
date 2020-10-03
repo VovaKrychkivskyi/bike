@@ -1,8 +1,10 @@
 const express = require(`express`);
 const cors = require(`cors`)
+
 const app = express();
 
 const {mainRouter} = require(`./routers`);
+
 const {
   createCop,
   createStolenBike,
@@ -10,6 +12,7 @@ const {
   addCopInProcess,
   changeCopStatus
 } = require(`./cron-jobs`);
+
 const {WHITE_LIST} = require(`./configs/const.config`)
 
 createCop();
@@ -17,7 +20,6 @@ createStolenBike();
 addBikeInProcess();
 addCopInProcess();
 changeCopStatus();
-
 
 app.use(cors({
   origin: (origin, callback) => {
@@ -31,7 +33,6 @@ app.use(cors({
 
 app.use(express.json());
 app.use(`/`, mainRouter);
-
 
 app.use('*', (err, req, res, next) => {
   res

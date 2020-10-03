@@ -1,11 +1,13 @@
-const StatModel = require(`../database/models/statistics.model`)
 const cron = require(`node-cron`)
+
+const StatModel = require(`../database/models/statistics.model`)
 
 const {
   copService: {
     getAllFreeCops,
     updateCopStatusService
   },
+
   statService: {
     getAllInfo,
     updateStatService,
@@ -26,6 +28,7 @@ module.exports = () => {
         singleCop.push(copsAll.dataValues)
       }
     }
+
     const cop = singleCop[0];
     const copId = cop.id;
     const copName = cop.name
@@ -47,8 +50,6 @@ module.exports = () => {
 
     await updateStatService(`bike is already found`, bikeId)
     await updateCopStatusService(`writing report`, copName)
-
-
   })
 }
 

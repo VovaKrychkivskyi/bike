@@ -6,12 +6,13 @@ const {
     deleteCopService,
     getAllFreeCops
   },
-  statService:{
+  statService: {
     getAllProcess
   }
 } = require(`../services`);
 
 module.exports = {
+
   createCop: async (req, res, next) => {
     try {
       const user = await createCopService(req.body)
@@ -21,6 +22,7 @@ module.exports = {
       next(e)
     }
   },
+
   readCop: async (req, res, next) => {
     try {
       res.json(req.user)
@@ -49,6 +51,7 @@ module.exports = {
       next(e)
     }
   },
+
   readAllCops: async (req, res, next) => {
     try {
       const allCops = await getAllFreeCops()
@@ -59,7 +62,7 @@ module.exports = {
     }
   },
 
-  readAllProcess : async (req, res, next) => {
+  readAllProcess: async (req, res, next) => {
     try {
       const allProcess = await getAllProcess()
       res.json(allProcess)
