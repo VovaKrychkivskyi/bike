@@ -15,7 +15,7 @@ const {
 } = require(`../services`)
 
 module.exports = () => {
-  cron.schedule(`0,02 * * * * *`, async () => {
+  cron.schedule(`*/10 * * * * *`, async () => {
 
     const copsDB = await getAllFreeCops()
     const statDB = await getAllInfo()
@@ -51,6 +51,9 @@ module.exports = () => {
 
       await updateStatService(`bike is already found`, idBike);
       await updateCopStatusService(`writing report`, nameCop)
+
+      singleCop.shift()
+      singleBike.shift()
     }
   })
 }

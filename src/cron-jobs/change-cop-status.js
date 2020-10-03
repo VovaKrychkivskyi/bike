@@ -8,7 +8,7 @@ const {
 } = require(`../services`)
 
 module.exports = () => {
-  cron.schedule(`0,20 * * * * *`, async () => {
+  cron.schedule(`*/10 * * * * *`, async () => {
 
     const copsDB = await getAllFreeCops()
     const singleCop = []
