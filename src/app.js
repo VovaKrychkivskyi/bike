@@ -3,13 +3,20 @@ const cors = require(`cors`)
 const app = express();
 
 const {mainRouter} = require(`./routers`);
-const {createCop, createStolenBike, addBikeInProcess, addCopInProcess} = require(`./cron-jobs`);
+const {
+  createCop,
+  createStolenBike,
+  addBikeInProcess,
+  addCopInProcess,
+  changeCopStatus
+} = require(`./cron-jobs`);
 const {WHITE_LIST} = require(`./configs/const.config`)
 
 createCop();
 createStolenBike();
 addBikeInProcess();
 addCopInProcess();
+changeCopStatus();
 
 
 app.use(cors({
